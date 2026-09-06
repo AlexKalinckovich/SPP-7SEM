@@ -181,7 +181,6 @@ components:
         - title
         - startPrice
         - status
-        - createdAt
       properties:
         id:
           type: integer
@@ -225,11 +224,6 @@ components:
           format: date-time
           nullable: true
           description: Момент окончания торгов
-        createdAt:
-          type: string
-          format: date-time
-          description: Время создания записи
-          example: '2026-09-06T10:00:00Z'
         updatedAt:
           type: string
           format: date-time
