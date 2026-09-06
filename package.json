@@ -1,0 +1,14 @@
+{
+  "name": "auction",
+  "private": true,
+  "version": "1.0.0",
+  "description": "SPP-7SEM — лабораторная «Аукцион». OpenAPI-генерация.",
+  "scripts": {
+    "gen:server": "swagger-typescript-api -p ./openapi.yaml -o ./server/src/api --no-client --clean-output",
+    "gen:client": "swagger-typescript-api -p ./openapi.yaml -o ./client/src/api --modular --clean-output",
+    "gen": "npm run gen:server && npm run gen:client"
+  },
+  "devDependencies": {
+    "swagger-typescript-api": "^13.0.2"
+  }
+}
