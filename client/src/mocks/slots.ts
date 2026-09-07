@@ -1,0 +1,40 @@
+import { type AuctionSlot, AuctionSlotStatus } from "../api/data-contracts";
+
+export const mockSlots: AuctionSlot[] = [
+  {
+    id: 1,
+    title: "Картина «Рассвет»",
+    description: "Масло, холст, 50x70 см",
+    startPrice: 1000,
+    currentBid: 2500,
+    seller: "ivanov",
+    status: AuctionSlotStatus.Active,
+    startsAt: "2026-09-01T10:00:00Z",
+    endsAt: "2026-09-10T10:00:00Z",
+    updatedAt: "2026-09-07T12:00:00Z",
+  },
+  {
+    id: 2,
+    title: "Старинная монета",
+    description: "Серебро, 1887 год",
+    startPrice: 500,
+    currentBid: null,
+    seller: "petrov",
+    status: AuctionSlotStatus.Draft,
+    startsAt: null,
+    endsAt: null,
+    updatedAt: null,
+  },
+  {
+    id: 3,
+    title: "Виниловая пластинка",
+    description: "The Beatles, Abbey Road",
+    startPrice: 1500,
+    currentBid: 1800,
+    seller: "sidorov",
+    status: AuctionSlotStatus.Closed,
+    startsAt: "2026-08-01T10:00:00Z",
+    endsAt: "2026-08-10T10:00:00Z",
+    updatedAt: "2026-08-11T10:00:00Z",
+  },
+];

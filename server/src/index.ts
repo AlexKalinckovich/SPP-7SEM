@@ -5,9 +5,10 @@ import { SlotController } from "./controllers/SlotController";
 import { SlotService } from "./services/SlotService";
 import { SlotRepository } from "./repositories/SlotRepository";
 import { errorHandler } from "./middleware/error-handler";
+import { config } from "./config";
 
 const app = express();
-const PORT = 3000;
+const PORT = config.port;
 
 app.use(cors());
 app.use(express.json());

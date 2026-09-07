@@ -1,4 +1,3 @@
-import { useState } from "react";
 import SlotsPage from "./components/SlotsPage";
 import "./App.css";
 
