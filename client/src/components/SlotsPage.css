@@ -1,79 +1,144 @@
 .slots-page {
-  max-width: 560px;
+  max-width: 720px;
   margin: 0 auto;
-  padding: 24px;
+  padding: 48px 24px;
   font-family: system-ui, sans-serif;
+  color: #f3f4f6;
+  text-align: left;
 }
 
 .slots-page h1 {
-  margin-bottom: 16px;
+  margin-bottom: 40px;
+  color: #ffffff;
+}
+
+.slot-error {
+  margin-bottom: 24px;
+  padding: 14px 18px;
+  background: rgba(220, 38, 38, 0.18);
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  border-radius: 8px;
+  color: #fca5a5;
+  font-size: 14px;
 }
 
 .slot-form {
   display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
+  gap: 16px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
 }
 
 .slot-form input {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
+  padding: 14px 16px;
+  border: 1px solid #3f3f46;
+  border-radius: 8px;
+  font-size: 15px;
+  background: #27272a;
+  color: #ffffff;
+}
+
+.slot-form input::placeholder {
+  color: #9ca3af;
+}
+
+.slot-form input:focus {
+  outline: none;
+  border-color: #7c3aed;
 }
 
 .slot-form input:first-child {
   flex: 1;
+  min-width: 220px;
 }
 
 .slot-form button {
-  padding: 8px 12px;
+  padding: 14px 20px;
   border: none;
-  border-radius: 4px;
-  background: #2563eb;
-  color: #fff;
+  border-radius: 8px;
+  background: #7c3aed;
+  color: #ffffff;
   cursor: pointer;
+  font-size: 15px;
+  transition: background 0.2s;
+}
+
+.slot-form button:hover {
+  background: #6d28d9;
 }
 
 .slot-list {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .slot-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 12px;
-  border: 1px solid #eee;
-  border-radius: 6px;
-  margin-bottom: 8px;
+  padding: 20px 24px;
+  border: 1px solid #3f3f46;
+  border-radius: 10px;
+  background: #1f1f23;
+  gap: 16px;
 }
 
 .slot-info {
   display: flex;
-  gap: 12px;
+  gap: 20px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .slot-title {
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 16px;
+  color: #ffffff;
+}
+
+.slot-status {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(124, 58, 237, 0.2);
+  color: #c4b5fd;
+  border: 1px solid rgba(124, 58, 237, 0.4);
 }
 
 .slot-price {
-  color: #666;
+  color: #d4d4d8;
+  font-size: 15px;
+}
+
+.slot-actions {
+  display: flex;
+  gap: 10px;
 }
 
 .slot-actions button {
-  margin-left: 6px;
-  padding: 6px 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background: #fff;
+  padding: 8px 14px;
+  border: 1px solid #3f3f46;
+  border-radius: 8px;
+  background: #27272a;
+  color: #ffffff;
   cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s, border-color 0.2s;
 }
 
 .slot-actions button:hover {
-  background: #f1f5f9;
+  background: #3f3f46;
+  border-color: #52525b;
+}
+
+.slot-empty {
+  color: #9ca3af;
+  font-size: 15px;
+  padding: 24px 0;
 }

@@ -3,20 +3,23 @@
     "rootDir": "./src",
     "outDir": "./dist",
 
-    "module": "CommonJS",
+    // Environment Settings
+    "module": "Node16",
     "target": "ES2024",
     "lib": ["ES2024"],
     "types": ["node"],
 
+    // Module Resolution
+    "moduleResolution": "node16",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+
+    // Outputs
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
 
     "strict": true,
-
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
 
     "isolatedModules": true,
     "skipLibCheck": true,
