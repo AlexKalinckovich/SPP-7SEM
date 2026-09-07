@@ -1,8 +1,10 @@
 import express = require("express");
 import cors = require("cors");
+import { StatusCodes } from "http-status-codes";
 import { SlotController } from "./controllers/SlotController";
 import { SlotService } from "./services/SlotService";
 import { SlotRepository } from "./repositories/SlotRepository";
+import { errorHandler } from "./middleware/error-handler";
 
 const app = express();
 const PORT = 3000;
@@ -23,6 +25,12 @@ app.get("/api/slots/:id", controller.get);
 app.post("/api/slots", controller.create);
 app.put("/api/slots/:id", controller.update);
 app.delete("/api/slots/:id", controller.delete);
+
+app.use((req, res) => {
+  res.status(StatusCodes.NOT_FOUND).json({ error: `Маршрут ${req.method} ${req.path} не найден` });
+});
+
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`API server on http://localhost:${PORT}`);

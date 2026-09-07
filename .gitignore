@@ -16,3 +16,10 @@ Thumbs.db
 .idea/
 
 .vite
+
+# Generated API clients (openapi generator)
+server/src/api/
+client/src/api/
+
+# Local history (VS Code extension "Local History")
+.history/

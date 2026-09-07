@@ -2,19 +2,20 @@ import { AuctionSlot, AuctionSlotCreate, AuctionSlotStatus, AuctionSlotUpdate } 
 import { toDto, toDtoList } from "../mappers/slot.mapper";
 import { SlotEntity } from "../entities/SlotEntity";
 import { SlotRepository } from "../repositories/SlotRepository";
+import { notFound } from "../errors/http-error";
 
 export class SlotService {
   constructor(private readonly repository: SlotRepository) {}
 
   list(status?: string): AuctionSlot[] {
     const slots = this.repository.findAll();
-    if (!status) return toDtoList(slots);
-    return toDtoList(slots.filter((s) => s.status === status));
+    return status ? toDtoList(slots.filter((s) => s.status === status)) : toDtoList(slots);
   }
 
-  get(id: number): AuctionSlot | null {
+  get(id: number): AuctionSlot {
     const slot = this.repository.findById(id);
-    return slot ? toDto(slot) : null;
+    if (!slot) throw notFound("Слот не найден");
+    return toDto(slot);
   }
 
   create(data: AuctionSlotCreate): AuctionSlot {
@@ -33,9 +34,9 @@ export class SlotService {
     return toDto(this.repository.create(entity));
   }
 
-  update(id: number, data: AuctionSlotUpdate): AuctionSlot | null {
+  update(id: number, data: AuctionSlotUpdate): AuctionSlot {
     const existing = this.repository.findById(id);
-    if (!existing) return null;
+    if (!existing) throw notFound("Слот не найден");
 
     const updated: SlotEntity = {
       ...existing,
@@ -51,8 +52,8 @@ export class SlotService {
     return toDto(this.repository.update(updated));
   }
 
-  delete(id: number): boolean {
-    return this.repository.delete(id);
+  delete(id: number): void {
+    if (!this.repository.delete(id)) throw notFound("Слот не найден");
   }
 
   private nextId(): number {

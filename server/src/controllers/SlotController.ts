@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import { AuctionSlotCreate, AuctionSlotStatus, AuctionSlotUpdate } from "../api/Api";
 import { SlotService } from "../services/SlotService";
+import { badRequest } from "../errors/http-error";
 
 export class SlotController {
   constructor(private readonly service: SlotService) {}
@@ -9,8 +10,7 @@ export class SlotController {
   list = (req: Request, res: Response): void => {
     const status = req.query.status as string | undefined;
     if (status && !Object.values(AuctionSlotStatus).includes(status as AuctionSlotStatus)) {
-      res.status(StatusCodes.BAD_REQUEST).json({ error: "Некорректный статус" });
-      return;
+      throw badRequest("Некорректный статус");
     }
     res.json(this.service.list(status));
   };
@@ -18,22 +18,15 @@ export class SlotController {
   get = (req: Request, res: Response): void => {
     const id = Number(req.params.id);
     if (!Number.isInteger(id) || id <= 0) {
-      res.status(StatusCodes.BAD_REQUEST).json({ error: "Некорректный id" });
-      return;
+      throw badRequest("Некорректный id");
     }
-    const slot = this.service.get(id);
-    if (!slot) {
-      res.status(StatusCodes.NOT_FOUND).json({ error: "Слот не найден" });
-      return;
-    }
-    res.json(slot);
+    res.json(this.service.get(id));
   };
 
   create = (req: Request, res: Response): void => {
     const body = req.body;
     if (!this.isValidCreate(body)) {
-      res.status(StatusCodes.BAD_REQUEST).json({ error: "Некорректные данные слота" });
-      return;
+      throw badRequest("Некорректные данные слота");
     }
     res.status(StatusCodes.CREATED).json(this.service.create(body));
   };
@@ -41,32 +34,21 @@ export class SlotController {
   update = (req: Request, res: Response): void => {
     const id = Number(req.params.id);
     if (!Number.isInteger(id) || id <= 0) {
-      res.status(StatusCodes.BAD_REQUEST).json({ error: "Некорректный id" });
-      return;
+      throw badRequest("Некорректный id");
     }
     const body = req.body;
     if (!this.isValidUpdate(body)) {
-      res.status(StatusCodes.BAD_REQUEST).json({ error: "Некорректные данные слота" });
-      return;
+      throw badRequest("Некорректные данные слота");
     }
-    const slot = this.service.update(id, body);
-    if (!slot) {
-      res.status(StatusCodes.NOT_FOUND).json({ error: "Слот не найден" });
-      return;
-    }
-    res.json(slot);
+    res.json(this.service.update(id, body));
   };
 
   delete = (req: Request, res: Response): void => {
     const id = Number(req.params.id);
     if (!Number.isInteger(id) || id <= 0) {
-      res.status(StatusCodes.BAD_REQUEST).json({ error: "Некорректный id" });
-      return;
+      throw badRequest("Некорректный id");
     }
-    if (!this.service.delete(id)) {
-      res.status(StatusCodes.NOT_FOUND).json({ error: "Слот не найден" });
-      return;
-    }
+    this.service.delete(id);
     res.status(StatusCodes.NO_CONTENT).send();
   };
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AuctionSlot, AuctionSlotStatus } from "../api/data-contracts";
+import { type AuctionSlot, AuctionSlotStatus } from "../api/data-contracts";
 import "./SlotsPage.css";
 
 interface EditableSlot {
@@ -15,7 +15,6 @@ const toSlot = (f: EditableSlot, existing?: AuctionSlot): AuctionSlot => ({
   title: f.title,
   startPrice: Number(f.startPrice) || 0,
   status: existing?.status ?? AuctionSlotStatus.Draft,
-  createdAt: existing?.createdAt ?? new Date().toISOString(),
 });
 
 export default function SlotsPage() {
